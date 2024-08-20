@@ -1,0 +1,52 @@
+<!-- The following code embeds the Git Chatbot into this website. 
+ There is a button on the bottom-right corner of the screen, that launches a small chatbot when clicked. -->
+
+<style>
+    /* Styles for the chatbot button and iframe */
+    .chatbot-button {
+        position: fixed;
+        bottom: 50px;
+        right: 20px;
+        background-color: #008CBA;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 15px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .chatbot-iframe {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 400px;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        display: none;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Chatbot button -->
+<button class="chatbot-button" onclick="toggleChatbot()">Chat with us!</button>
+
+<!-- Chatbot iframe -->
+<iframe id="chatbot-iframe" class="chatbot-iframe" src="https://maahikag-versionwise.hf.space"></iframe>
+
+<script>
+    function toggleChatbot() {
+        var iframe = document.getElementById('chatbot-iframe');
+        if (iframe.style.display === "none" || iframe.style.display === "") {
+            iframe.style.display = "block";
+        } else {
+            iframe.style.display = "none";
+        }
+    }
+</script>
+
+<!-- This defines a button on the top of the screen which navigates to a different page defined in the terminal.html file -->
+<button onclick="window.location.href = 'src/terminal.html';">HOME</button>

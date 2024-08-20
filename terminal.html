@@ -1,0 +1,91 @@
+<!-- This page is intended to teach users about Git Internals. 
+It has a scrollable tutorial on the right half of the screen and a web terminal on the left half.
+The terminal has not been incorporated yet, as the Kubernetes integration is still a work in progess (View the Web-Terminal repository).
+In a later iteration of the application, there should be many tutorials similar to this one, allowing us to transition away from LearnGitBranching. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>One Page Website</title>
+  <link rel="stylesheet" href="style_scroll.css">
+</head>
+<body>
+  <div class="container">
+    <div class = "slides">
+      <h1>Git Internals</h1>
+      <p> In this section, you will learn about the underlying data structures in git. 
+        You will be prompted to type commands into the simulated terminal and see how they impact your workspace, index, local repository, and remote repository.
+        Further, you will be introduced to trees, blobs, and commits, the main object models used by Git. 
+      </p>
+    </div>
+    <div class = "slides">
+      <h2>Workspaces</h2>
+      <p> Workspaces refer to your local file folder present on your laptop. This is where you are making your edits. 
+        When you modify code file, you are modifying it in your workspace. 
+      </p>
+    </div>
+    <div class = "slides">
+      <h2>Index</h2>
+      <p> The index, or cache, is the place on your local machine where your files are typically stored before they are committed to your local repository.
+        When you modify a file in your workspace and then type the command "git add modified_file", the file gets added to your index.
+      </p>
+    </div>
+    <div class = "slides">
+      <h2>Local Repository</h2>
+      <p> Git is a distributed version control system rather than a centralized version control system. 
+        This means that each user who cloned the repository gets the complete codebase, which contains the full version history. 
+        Thus, there isn't only one working codebase present on a server, but rather, every user has their own functional codebase on their local machine. 
+        If a user wants to commit code and revert changes, they do not need to connect with a remote repository on the server, but rather just utilizes the 
+        local repository on their machine.
+      </p>
+    </div>
+    <div class = "slides">
+      <h2>Remote Repository</h2>
+      <p> The remote repository is a repository hosted on an online server. It's main purpose is to enable collaboration between users and the sharing of code.
+        You can pull code from a remote repository to your local repository using "git pull" and you can push code from your local repository to the remote repository using "git push".
+      </p>
+    </div>
+    <div class = "slides">
+      <h2>Practice</h2>
+      <p> Here, you will type some common Git commands into the simulated terminal to better understand the aforementioned concepts. To begin, let's practice initializing your workspace. 
+        Try typing in the command "git clone sample_repository"  to clone the files from a remote repository into your workspace. 
+        Currently, the files in your workspace, index, local repository and remote repository are all the same. 
+        Now, let's imagine that you made some modification to one of the files in your local repository. Lets call this file modified-file. 
+        In order to add this file to our index, type the command "git add modified-file". 
+        Now, lets commit this change to our local repository. Type the command "git commit modified-file". 
+        Finally, if you wanted to push this change back to the remote repository, you would type the command "git push origin".
+        Congratulations! You have successfully learned about Git lifestyle changes! 
+      </p>
+    </div>
+    <div class = "slides">
+      <h2>Blobs</h2>
+      <p> Blobs store the binary data in a single file. They typically do not contain any metadata, and are sometimes referred to as octet or byte streams. 
+        They are stored in the object database present in the .git/objects/ path in your root directory. You create a new blob when you use the "git add" command. 
+        You can also sometimes create new blob objects when using "git merge" or "git rebase" if these commands change the content within an existing file.
+      </p>
+    </div>
+    <div class = "slides">
+      <h2>Trees</h2>
+      <p> Trees are used to connect a blob with its file name and file path within a directory. This is necessary, as a blob only contains the binary data of a file, and none of its metadata. 
+        Just like blobs, trees are stored in the object database present in the .git/objects/ path in your root directory. As mentioned above, a blob is created when the user types the "git add" command. 
+        Afterwards, a cache entry is added into the index located in .git/index, which conatins the name of the file, the path, the file's permissions, and the blob's hash.
+        Afterwords, when the user types "git commit", a tree object is generated using the contents within the cache and depicts the current status of the working directory. 
+        A phrase that you may hear is called "Git's three trees". These trees refer to the three main versions of the files that are being managed by Git. 
+        The first tree is the "HEAD". This refers to the files in the last commit that was done. 
+        The second tree is the "Index". These are the cache entries present in the index, which were created after the "git add" command, but have not been committed yet.
+        Finally, the last tree is the "Working Directory". These are the files that are present in your workspace but have not been added to the index. 
+      </p>
+    </div>
+    <div class = "slides">
+      <h2>Commits</h2>
+      <p> Commit objects depict the state of an author's working directory at a particular point in time. All of the commit objects are stored within Git, creating a complete version history. 
+        A user can navigate to a previous version of a directory using the "git checkout" command. 
+        Besides the initial (or root) commit, every commit has at least one "parent", which is a reference to the previous commit on the branch.  
+        Some commits have more than two parents. For example, a merge commit stores references to the commits being merged. 
+        Just like trees and blobs, commits are stores in the .git/objects/ path. 
+      </p>
+    </div>
+</html>
+
